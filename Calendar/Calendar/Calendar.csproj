@@ -207,6 +207,7 @@
     <Content Include="Scripts\libs\jquery\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\libs\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\plugins\jquery.calendario.js" />
+    <Content Include="Scripts\controllers\homePageController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

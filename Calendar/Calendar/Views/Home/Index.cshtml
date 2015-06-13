@@ -1,21 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<div class="calendar-nav-strip">
-    <button class="btn btn-info pull-left">Previous</button>
-    <span class="text-center col-md-10 col-sm-8 col-xs-6">JULY 2015</span>
-    <button class="btn btn-info pull-right">Next</button>
-</div>
-<div class="custom-calendar-full">
-    <div id="calendar" class="fc-calendar-container"></div>
-</div>
+@Styles.Render("~/Content/css/calendar")
 
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            var obj = $('#calendar').calendario();
-        });
-    </script> 
-}
+<div id="homePageContent" ng-controller="homePageCtrl">
+    <div class="calendar-nav-strip">
+        <button class="btn btn-info pull-left" ng-click="switchToPreviousMonth()">Previous</button>
+        <span class="text-center col-md-10 col-sm-8 col-xs-6" ng-bind="formattedMonthAndYear()"></span>
+        <button class="btn btn-info pull-right" ng-click="switchToNextMonth()">Next</button>
+        <button class="btn btn-info pull-right" ng-click="switchToToday()">Today</button>
+    </div>
+    <div class="custom-calendar-full">
+        <div id="calendar" class="fc-calendar-container"></div>
+    </div>
+</div>
