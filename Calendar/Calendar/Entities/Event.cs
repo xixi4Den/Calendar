@@ -3,9 +3,8 @@ using Calendar.Models;
 
 namespace Calendar.Entities
 {
-    public class Event
+    public class Event: BaseDbEntity
     {
-        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Descriiption { get; set; }
         public DateTime? StartDate { get; set; }
