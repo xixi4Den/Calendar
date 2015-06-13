@@ -7,7 +7,7 @@
 <div id="homePageContent" ng-controller="homePageCtrl">
     <div class="calendar-nav-strip">
         <button class="btn btn-info pull-left" ng-click="switchToPreviousMonth()">Previous</button>
-        <span class="text-center col-md-10 col-sm-8 col-xs-6" ng-bind="formattedMonthAndYear()"></span>
+        <span id="current-month-and-year" class="text-center col-md-10 col-sm-8 col-xs-6" ng-bind="formattedMonthAndYear()"></span>
         <button class="btn btn-info pull-right" ng-click="switchToNextMonth()">Next</button>
         <button class="btn btn-info pull-right" ng-click="switchToToday()">Today</button>
     </div>

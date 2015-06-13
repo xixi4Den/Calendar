@@ -16,6 +16,15 @@
     margin: 60px;
 }
 
+#current-month-and-year {
+    font-size: 20px;
+    color: #ddd;
+}
+
+.fc-today {
+    border: 2px solid #9b1f50 !important;
+}
+
 .custom-calendar-full {
 	position: absolute;
 	top: 100px;
