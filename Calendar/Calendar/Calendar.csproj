@@ -171,8 +171,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Business\EventService.cs" />
     <Compile Include="Business\IEventService.cs" />
-    <Compile Include="Business\IUserService.cs" />
-    <Compile Include="Business\UserService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

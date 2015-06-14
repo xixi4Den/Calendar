@@ -13,21 +13,24 @@ namespace Calendar.Business
     public class EventService: IEventService
     {
         private readonly IRepository<Event> eventRepository;
-        private readonly IUserService userService;
 
-        public EventService(IRepository<Event> eventRepository,
-            IUserService userService)
+        public EventService(IRepository<Event> eventRepository)
         {
             this.eventRepository = eventRepository;
-            this.userService = userService;
         }
 
         public EventListViewModel GetEventsOnDate(DateTime date, string userId)
         {
-            Contract.Assert(date != default(DateTime), "Incorrect date");
-            Contract.Assert(!String.IsNullOrWhiteSpace(userId), "userId should not be null or empty");
+            if (date == default(DateTime))
+            {
+                throw new ArgumentException("Incorrect date");
+            }
+            if (String.IsNullOrWhiteSpace(userId))
+            {
+                throw new ArgumentException("userId should not be null or empty");
+            }
 
-            var events = eventRepository.Get(x => x.ApplicationUser.Id == userId &&
+            var events = eventRepository.Get(x => x.ApplicationUserId == userId &&
                                      ((x.StartDate.HasValue && x.StartDate.Value.Year == date.Year && x.StartDate.Value.Month == date.Month && x.StartDate.Value.Day == date.Day) ||
                                       (x.EndDate.HasValue && x.EndDate.Value.Year == date.Year && x.EndDate.Value.Month == date.Month && x.EndDate.Value.Day == date.Day))).ToList();
             var eventViewModels = Mapper.Map<IEnumerable<EventViewModel>>(events);
