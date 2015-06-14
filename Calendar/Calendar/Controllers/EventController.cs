@@ -1,22 +1,27 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Calendar.Business;
 using Calendar.DataAccess;
 using Calendar.Entities;
+using Microsoft.AspNet.Identity;
 
 namespace Calendar.Controllers
 {
     public class EventController : Controller
     {
-        private readonly IRepository<Event> eventRepository;
+        private readonly IEventService eventService;
 
-        public EventController(IRepository<Event> eventRepository)
+        public EventController(IEventService eventService)
         {
-            this.eventRepository = eventRepository;
+            this.eventService = eventService;
         }
 
         // GET: Event
-        public ActionResult List()
+        public ActionResult List(DateTime? date)
         {
-            return View();
+            var viewModel = eventService.GetEventsOnDate(date.Value, User.Identity.GetUserId());
+
+            return View(viewModel);
         }
 
         // GET: Event/Details/5

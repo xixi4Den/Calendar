@@ -1,8 +1,35 @@
-﻿@{
+﻿@using Calendar.Extensions
+@using Calendar.Models
+
+@model EventListViewModel
+@{
     ViewBag.Title = "Events";
 }
 
-<div class="container content">
-    <h2>List</h2>
+<div id="eventContent" ng-controller="eventCtrl" ng-init='init(@Html.Raw(Model.ToJson()))' class="container content">
+    @Html.Partial("~/Views/Event/_AddEditEventTemplate.cshtml")
 
+    @Html.Raw(Model.ToJson())
+    <h2>Events on {{day | date:'fullDate'}}</h2>
+    <button ng-click="addEvent()" class="btn btn-info">Add</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="completed-{{event.isRemoved}}" ng-repeat='event in events | orderBy: ["isRemoved", "startDate", "endDate"]'>
+                <td>{{ event.title }}</td>
+                <td>{{ event.startDate | date:'shortTime'}}</td>
+                <td>{{ event.endDate | date:'shortTime'}}</td>
+                <td>{{ event.description}}</td>
+                <td ng-hide="event.isRemoved" class="link"><span ng-click="editEvent(event.id)" class="glyphicon glyphicon-pencil"></span></td>
+                <td ng-hide="event.isRemoved" class="link"><span ng-click="removeEvent(event.id)" class="glyphicon glyphicon-remove"></span></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

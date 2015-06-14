@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Calendar.Business;
 using Calendar.DataAccess;
 using Calendar.Entities;
 using Ninject;
@@ -31,6 +32,7 @@ namespace Calendar.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IRepository<Event>>().To<CommonRepository<Event>>();
+            kernel.Bind<IEventService>().To<EventService>();
         }
     }
 }
