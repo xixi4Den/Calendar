@@ -63,6 +63,9 @@
             modalInstance.result.then(function (event) {
                 $scope.resolveDates(event);
                 $http.post("/Event/Edit", event).then(function () {
+                    var oldEvent = _.findWhere($scope.events, { id: event.id });
+                    $scope.events = _.without($scope.events, oldEvent);
+                    $scope.events.push(event);
                     $.notify("Event has been modified", "success");
                 }, function () {
                     $.notify("Event has not been modified", "error");
@@ -112,11 +115,11 @@
     eventApp.controller('AddEditEventModalCtrl', ['$scope', '$modalInstance', 'event', 'title',
         function ($scope, $modalInstance, event, title) {
             $scope.title = title;
-            $scope.event = event;
+            $scope.event = angular.copy(event);
             $scope.event.noStartDate = event.startDate ? false : true;
             $scope.event.noEndDate = event.endDate ? false : true;
             $scope.clickOk = function () {
-                $modalInstance.close(event);
+                $modalInstance.close($scope.event);
             };
             $scope.clickCancel = function () {
                 $modalInstance.dismiss('cancel');

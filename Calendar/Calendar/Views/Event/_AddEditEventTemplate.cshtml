@@ -2,13 +2,17 @@
     <div class="modal-header">
         <h3 class="modal-title">{{title}}</h3>
     </div>
-    <div class="modal-body">
-        <input type="text" class="form-control" placeholder="Title" ng-model="event.title">
+    <div ng-form class="modal-body" name="addEditEventForm">
+        <input type="text" class="form-control" placeholder="Title" ng-model="event.title" ng-model-options="{ updateOn: 'blur' }" name="titleInput" required>
+        <small class="error"
+               ng-show="addEditEventForm.titleInput.$error.required">
+            Title is required
+        </small>
         <div class="row time-range-section">
             <div class="col-md-6">
                 <span class="pull-left label label-info date-title">From</span>
                 <div class="timepicker-wrapper">
-                    <timepicker ng-model="event.startDate" ng-hide="event.noStartDate" class="col-md-5" hour-step="1" minute-step="1" show-meridian="true"></timepicker>
+                    <timepicker ng-model="event.startDate" ng-hide="event.noStartDate" class="col-md-5" hour-step="1" minute-step="1" show-meridian="true" ng-model-options="{ updateOn: 'blur' }"></timepicker>
                 </div>
                 <label class="checkbox-inline">
                     <input ng-model="event.noStartDate" type="checkbox" />No start time
@@ -17,17 +21,17 @@
             <div class="col-md-6">
                 <span class="pull-left label label-info date-title">To</span>
                 <div class="timepicker-wrapper">
-                    <timepicker ng-model="event.endDate" ng-hide="event.noEndDate" hour-step="1" minute-step="1" show-meridian="true"></timepicker>
+                    <timepicker ng-model="event.endDate" ng-hide="event.noEndDate" hour-step="1" minute-step="1" show-meridian="true" ng-model-options="{ updateOn: 'blur' }"></timepicker>
                 </div>
                 <label class="checkbox-inline">
                     <input ng-model="event.noEndDate" type="checkbox" />No end time
                 </label>
             </div>
-            </div>
-            <textarea ng-model="event.description" class="form-control" rows="3" placeholder="Description"></textarea>
         </div>
-        <div class="modal-footer">
-            <button ng-click="clickOk()" class="btn btn-primary">OK</button>
-            <button ng-click="clickCancel()" class="btn btn-default">Cancel</button>
-        </div>
+        <textarea ng-model="event.description" class="form-control" rows="3" placeholder="Description" ng-model-options="{ updateOn: 'blur' }"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" ng-disabled="addEditEventForm.$invalid" ng-click="clickOk()" class="btn btn-primary">OK</button>
+        <button ng-click="clickCancel()" class="btn btn-default">Cancel</button>
+    </div>
 </script>

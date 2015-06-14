@@ -8,12 +8,12 @@
 
 <div id="eventContent" ng-controller="eventCtrl" ng-init='init(@Html.Raw(Model.ToJson()))' class="container content">
     @Html.Partial("~/Views/Event/_AddEditEventTemplate.cshtml")
-    <h2>Events on {{day | date:'fullDate'}}</h2>
+    <h2 ng-cloak>Events on {{day | date:'fullDate'}}</h2>
     <button ng-click="addEvent()" class="btn btn-info">Add</button>
     <button ng-click="switchToNextDay()" class="btn btn-default pull-right">Next day</button>
     <button ng-click="switchToPreviousDay()" class="btn btn-default pull-right">Previous day</button>
-    <div ng-show="noEvents()" class="alert alert-info no-events" role="alert">No events on this day</div>
-    <table ng-hide="noEvents()" class="table table-striped">
+    <div ng-cloak ng-show="noEvents()" class="alert alert-info no-events" role="alert">No events on this day</div>
+    <table ng-cloak ng-hide="noEvents()" class="table table-striped">
         <thead>
             <tr>
                 <th>Title</th>

@@ -16,7 +16,6 @@ namespace Calendar.Controllers
             this.eventService = eventService;
         }
 
-        [Authorize]
         public ActionResult List(int year, int month, int day)
         {
             var date = new DateTime(year, month, day);
