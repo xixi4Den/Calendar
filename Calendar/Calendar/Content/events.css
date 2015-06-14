@@ -1,3 +1,19 @@
 ﻿.completed-true {
     text-decoration: line-through
 }
+
+.time-range-section {
+    margin: 30px 15px;
+}
+
+.time-range-section .timepicker-wrapper {
+    height: 110px;
+}
+
+.time-range-section span.date-title{
+    font: bold 15px arial;
+}
+
+.no-events {
+    margin: 20px;
+}

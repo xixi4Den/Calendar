@@ -171,6 +171,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Business\EventService.cs" />
     <Compile Include="Business\IEventService.cs" />
+    <Compile Include="Business\IUserService.cs" />
+    <Compile Include="Business\UserService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +199,10 @@
     <Compile Include="Migrations\201506131552431_FixDescriptionColumnName.Designer.cs">
       <DependentUpon>201506131552431_FixDescriptionColumnName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506141158113_EventTable_FixUserIdColumn.cs" />
+    <Compile Include="Migrations\201506141158113_EventTable_FixUserIdColumn.Designer.cs">
+      <DependentUpon>201506141158113_EventTable_FixUserIdColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventListViewModel.cs" />
@@ -216,7 +222,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
-    <Content Include="img\icons.png" />
     <Content Include="Scripts\modules\eventApp.js" />
     <Content Include="Scripts\libs\angular.js" />
     <Content Include="Scripts\libs\angular.min.js" />
@@ -237,6 +242,8 @@
     <Content Include="Scripts\libs\underscore.min.js" />
     <Content Include="Scripts\plugins\jquery.calendario.js" />
     <Content Include="Scripts\modules\homePageApp.js" />
+    <Content Include="Scripts\plugins\notify.js" />
+    <Content Include="Scripts\plugins\notify.min.js" />
     <Content Include="Scripts\plugins\ui-bootstrap-tpls-0.13.0.js" />
     <Content Include="Scripts\plugins\ui-bootstrap-tpls-0.13.0.min.js" />
     <Content Include="Web.config" />
@@ -277,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506131552431_FixDescriptionColumnName.resx">
       <DependentUpon>201506131552431_FixDescriptionColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506141158113_EventTable_FixUserIdColumn.resx">
+      <DependentUpon>201506141158113_EventTable_FixUserIdColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

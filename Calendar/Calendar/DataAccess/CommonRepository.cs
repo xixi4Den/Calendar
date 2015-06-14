@@ -52,17 +52,20 @@ namespace Calendar.DataAccess
                 context.Set<T>().Attach(entity);
                 context.Entry(entity).State = EntityState.Modified;
             }
+            context.SaveChanges();
         }
 
         public void Delete(T entity)
         {
             context.Set<T>().Remove(entity);
+            context.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
             T entity = GetById(id);
             Delete(entity);
+            context.SaveChanges();
         }
 
         public int Count(Expression<Func<T, bool>> filter)

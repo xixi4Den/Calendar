@@ -10,7 +10,8 @@ namespace Calendar.Extensions
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                DateTimeZoneHandling  = DateTimeZoneHandling.Local,
             };
 
             var serializer = JsonSerializer.Create(serializerSettings);

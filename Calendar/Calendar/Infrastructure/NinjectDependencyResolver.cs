@@ -33,6 +33,7 @@ namespace Calendar.Infrastructure
         {
             kernel.Bind<IRepository<Event>>().To<CommonRepository<Event>>();
             kernel.Bind<IEventService>().To<EventService>();
+            kernel.Bind<IUserService>().To<UserService>();
         }
     }
 }

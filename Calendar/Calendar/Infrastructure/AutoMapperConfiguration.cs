@@ -9,7 +9,9 @@ namespace Calendar.Infrastructure
         public static void RegisterMappings()
         {
             Mapper.CreateMap<Event, EventViewModel>()
-                .ForMember(x => x.UserId, opt => opt.MapFrom(y => y.ApplicationUser.Id));
+                .ForMember(x => x.UserId, opt => opt.MapFrom(y => y.ApplicationUserId));
+            Mapper.CreateMap<EventViewModel, Event>()
+                .ForMember(x => x.ApplicationUserId, opt => opt.MapFrom(y => y.UserId)); ;
         }
     }
 }

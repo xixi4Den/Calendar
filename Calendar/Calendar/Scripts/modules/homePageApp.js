@@ -5,7 +5,7 @@
         $scope.calendar = angular.element('#calendar').calendario(
             {
                 onDayClick: function($el, $content, dateProperties) {
-                    
+                    window.location.href = "Event/List?year="+dateProperties.year+"&month="+dateProperties.month+"&day="+dateProperties.day;
                 }
             }
         );

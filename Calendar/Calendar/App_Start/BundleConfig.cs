@@ -15,7 +15,8 @@ namespace Calendar
 
             bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
                         "~/Scripts/plugins/jquery.calendario.js",
-                        "~/Scripts/plugins/ui-bootstrap-tpls-{version}.js"));
+                        "~/Scripts/plugins/ui-bootstrap-tpls-{version}.js",
+                        "~/Scripts/plugins/notify.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                         "~/Scripts/modules/homePageApp.js",

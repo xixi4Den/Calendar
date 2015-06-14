@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using Calendar.Business;
-using Calendar.DataAccess;
-using Calendar.Entities;
+using Calendar.Models;
 using Microsoft.AspNet.Identity;
 
 namespace Calendar.Controllers
@@ -16,83 +16,39 @@ namespace Calendar.Controllers
             this.eventService = eventService;
         }
 
-        // GET: Event
-        public ActionResult List(DateTime? date)
+        [Authorize]
+        public ActionResult List(int year, int month, int day)
         {
-            var viewModel = eventService.GetEventsOnDate(date.Value, User.Identity.GetUserId());
-
+            var date = new DateTime(year, month, day);
+            var viewModel = eventService.GetEventsOnDate(date, User.Identity.GetUserId());
             return View(viewModel);
         }
 
-        // GET: Event/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Event/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Event/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EventViewModel newEvent)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                eventService.CreateEvent(newEvent);
+                return Json(true);
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                throw new HttpException(500, "");
             }
         }
 
-        // GET: Event/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EventViewModel oldEvent)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                eventService.UpdateEvent(oldEvent);
+                return Json(true);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
-            }
-        }
-
-        // GET: Event/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Event/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                throw new HttpException(500, "");
             }
         }
     }
